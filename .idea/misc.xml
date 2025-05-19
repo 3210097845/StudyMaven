@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="MavenRunner">
-    <option name="jreName" value="23" />
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Study-maven/maven-project01/pom.xml" />
+        <option value="$PROJECT_DIR$/Study-maven/maven-project-02/pom.xml" />
+        <option value="$PROJECT_DIR$/Study-maven/springboot-web-rg01/pom.xml" />
+        <option value="$PROJECT_DIR$/Study-maven/sprinngboot-web-quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-web-01/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
