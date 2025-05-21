@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository//注解，就代表把当前类产生的对象交给IOC容器管理
+@Repository("udo")//注解，就代表把当前类产生的对象交给IOC容器管理
 public class UserDaoImpl implements UserDao {//数据访问层
     @Override
     public List<String> findAll() {

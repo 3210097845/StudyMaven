@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 //    }
 @Service //("userservice")注解后加（属性）可以指定bean的名字 //注解，就代表把当前类产生的对象交给IOC容器管理
 public class UserServiceImpl implements UserService {//逻辑处理层
+    //属性注入
     @Autowired//注入运行时所依赖的对象
     private UserDao userDao ;
 

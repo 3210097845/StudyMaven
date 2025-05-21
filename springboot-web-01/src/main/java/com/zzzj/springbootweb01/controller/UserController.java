@@ -63,9 +63,25 @@ import java.util.stream.Collectors;
 
 @RestController
 public class UserController {//接受浏览器的请求，并且响应数据
+    //属性注入
     @Autowired//注入运行时所依赖的对象
     private UserService userService ;
 
+//    //方式二: 构造器注入
+//    private final UserService userService;
+//
+//    @Autowired //如果当前类中只存在一个构造函数, @Autowired可以省略
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
+
+    //方式三: setter注入
+//    private UserService userService;
+//
+//    @Autowired
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
     @RequestMapping("/list")
     public List<User> list(){
         //1.调用Service
