@@ -2,11 +2,13 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="maven-project01" />
+        <module name="jdbc-demo" />
         <module name="sprinngboot-web-quickstart" />
         <module name="maven-project-02" />
       </profile>
@@ -19,7 +21,7 @@
         </processorPath>
         <module name="springboot-web-rg01" />
       </profile>
-      <profile name="Annotation profile for springboot-web-01" enabled="true">
+      <profile name="Annotation profile for springboot-mybatis-quickstart" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,11 +29,17 @@
           <entry name="$PROJECT_DIR$/../Maven/apache-maven-3.9.9/BengDi/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="springboot-web-01" />
+        <module name="springboot-mybatis-quickstart" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="StudyFanshe" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="StudyFanshe" options="-parameters" />
+      <module name="springboot-mybatis-quickstart" options="-parameters" />
       <module name="springboot-web-01" options="-parameters" />
       <module name="springboot-web-rg01" options="-parameters" />
       <module name="sprinngboot-web-quickstart" options="-parameters" />
