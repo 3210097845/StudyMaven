@@ -1,10 +1,7 @@
 package com.zzzj.mapper;
 
 import com.zzzj.pojo.Dept;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,4 +21,20 @@ public interface DeptMapper {
 //@Select("select id, name, create_time createTime, update_time updateTime from dept")
     @Select("select id,name,dept.create_time,dept.update_time from dept order by  update_time desc ;")
    public List<Dept> findAll();
+
+    //根据i d删除部门
+    @Delete("delete from dept where id=#{id}")
+    public void delete(Integer id);
+
+    //添加部门
+    @Insert("insert into dept(name,create_time,update_time) values(#{name},#{createTime},#{updateTime})")
+    public void add(Dept dept);
+
+    //根据id查询部门
+    @Select("select id,name,dept.create_time,dept.update_time from dept where id=#{id}")
+    Dept getById(Integer id);
+
+    //修改部门
+     @Update("update dept set name=#{name},update_time=#{updateTime} where id=#{id}")
+   public void update(Dept dept);
 }
