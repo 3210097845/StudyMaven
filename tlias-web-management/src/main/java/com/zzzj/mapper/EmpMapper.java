@@ -4,6 +4,7 @@ import com.zzzj.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -11,9 +12,26 @@ import java.util.List;
  */
 @Mapper
 public interface EmpMapper {
-    @Select("select count(*) from  emp e left join  dept d on e.dept_id = d.id")
-    public Long count();//查询记录总数
-    @Select("select e.*,d.name deptName from emp e left join dept d on e.dept_id=d.id limit #{start} , #{pageSize} ")
-    public List<Emp> list(Integer start, Integer pageSize);
+    /**
+     * 分页查询原始方法
+     */
+//    @Select("select count(*) from  emp e left join  dept d on e.dept_id = d.id")
+//    public Long count();//查询记录总数
+//    @Select("select e.*,d.name deptName from emp e left join dept d on e.dept_id=d.id limit #{start} , #{pageSize} ")
+//    public List<Emp> list(Integer start, Integer pageSize);
 
+    /**
+     * 分页查询：引入PageHelper插件
+     * 注意事项：
+     * 1.- PageHelper只会对紧跟在其后的第一条SQL语句进行分页处理。
+     * 2.- PageHelper实现分页查询时，SQL语句的结尾一定一定一定不要加分号(;).。
+     */
+//    @Select("select e.*,d.name deptName from emp e left join dept d on e.dept_id=d.id order by e.update_time desc ")
+//    public List<Emp> list();
+
+    /**
+     * 分页条件查询
+     */
+
+    public List<Emp> list(String name, Integer gender, LocalDate begin, LocalDate end);
 }
