@@ -22,6 +22,8 @@ public class Emp {
     private LocalDateTime createTime; //创建时间
     private LocalDateTime updateTime; //修改时间
 
-    //封装部门名称数
+    //封装部门名称
     private String deptName; //部门名称
+    //封装员工工作经历信息
+    private List<EmpExpr> exprList;
 }

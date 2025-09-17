@@ -2,7 +2,9 @@ package com.zzzj.mapper;
 
 import com.zzzj.pojo.Emp;
 import com.zzzj.pojo.EmpQueryParam;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
@@ -35,4 +37,12 @@ public interface EmpMapper {
      */
 
     public List<Emp> list(EmpQueryParam empqueryparam);
+
+    /**
+     * 保存员工基本信息
+     */
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @Insert("insert into emp(username,password,name,gender,phone,job,salary,image,entry_date,dept_id,create_time,update_time)" +
+            " values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
+    void inster(Emp emp);
 }

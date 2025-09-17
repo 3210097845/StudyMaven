@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -47,5 +48,18 @@ public class EmpServiceImpl implements EmpService {
         Page<Emp> p = (Page<Emp>) emplist;
         //封装结果
         return new PageResult<>(p.getTotal(),p.getResult());
+
+
+    }
+    /**
+     * 添加员工
+     */
+    @Override
+    public void save(Emp emp) {
+        //设置时间为当前更新时间
+        emp.setCreateTime(LocalDateTime.now());
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.inster(emp);
+
     }
 }
