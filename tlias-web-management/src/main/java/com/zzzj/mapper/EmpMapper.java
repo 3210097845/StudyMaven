@@ -1,6 +1,7 @@
 package com.zzzj.mapper;
 
 import com.zzzj.pojo.Emp;
+import com.zzzj.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -33,5 +34,5 @@ public interface EmpMapper {
      * 分页条件查询
      */
 
-    public List<Emp> list(String name, Integer gender, LocalDate begin, LocalDate end);
+    public List<Emp> list(EmpQueryParam empqueryparam);
 }

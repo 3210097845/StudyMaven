@@ -1,6 +1,7 @@
 package com.zzzj.controller;
 
 import com.zzzj.pojo.Emp;
+import com.zzzj.pojo.EmpQueryParam;
 import com.zzzj.pojo.PageResult;
 import com.zzzj.pojo.Result;
 import com.zzzj.service.EmpService;
@@ -24,18 +25,27 @@ public class EmpController {
 
     @Autowired
     private EmpService empService;
+    //传参方式一：
 
-    @GetMapping
-    public Result  page(@RequestParam(defaultValue = "1") Integer page,
-                        @RequestParam(defaultValue = "10") Integer pageSize,
-                        String name , Integer gender,
-                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
-                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)//@DateTimeFormat(pattern = "yyyy-MM-dd")日期时间类型参数接收时,需要通过这个注解指定前端传递的日期格式
-    {
-        log.info("查询请求参数： {}, {}, {}, {}, {}, {}", page, pageSize, name, gender, begin, end);
-        PageResult<Emp> pageResult = empService.page(page, pageSize, name, gender, begin, end);
-        return Result.success(pageResult);
+//    @GetMapping
+//    public Result  page(@RequestParam(defaultValue = "1") Integer page,
+//                        @RequestParam(defaultValue = "10") Integer pageSize,
+//                        String name , Integer gender,
+//                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+//                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)//@DateTimeFormat(pattern = "yyyy-MM-dd")日期时间类型参数接收时,需要通过这个注解指定前端传递的日期格式
+//    {
+//        log.info("查询请求参数： {}, {}, {}, {}, {}, {}", page, pageSize, name, gender, begin, end);
+//        PageResult<Emp> pageResult = empService.page(page, pageSize, name, gender, begin, end);
+//        return Result.success(pageResult);
+//
+//    }
+@GetMapping
+public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyyy-MM-dd")日期时间类型参数接收时,需要通过这个注解指定前端传递的日期格式
+{
+    log.info("查询请求参数： {}", empqueryparam);
+    PageResult<Emp> pageResult = empService.page(empqueryparam);
+    return Result.success(pageResult);
 
-    }
+}
 
 }

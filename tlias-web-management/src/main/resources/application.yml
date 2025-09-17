@@ -12,3 +12,6 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # MyBatis日志实现，将SQL语句输出到控制台
     map-underscore-to-camel-case: true  # 开启驼峰命名映射，自动将下划线命名转换为驼峰命名
+pagehelper:
+  reasonable: true #reasonable：分页合理化参数，默认值为false。当该参数设置为true时，pageNum<=0时会查询第一页，pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
+  helper-dialect: mysql
