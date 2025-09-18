@@ -2,13 +2,17 @@ package com.zzzj.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.zzzj.mapper.EmpExprMapper;
 import com.zzzj.mapper.EmpMapper;
 import com.zzzj.pojo.Emp;
+import com.zzzj.pojo.EmpExpr;
 import com.zzzj.pojo.EmpQueryParam;
 import com.zzzj.pojo.PageResult;
 import com.zzzj.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +26,8 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private EmpExprMapper empExprMapper;
 
     @Override
     public PageResult<Emp> page(EmpQueryParam empqueryparam) {
@@ -54,12 +60,23 @@ public class EmpServiceImpl implements EmpService {
     /**
      * 添加员工
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Emp emp) {
         //设置时间为当前更新时间
         emp.setCreateTime(LocalDateTime.now());
         emp.setUpdateTime(LocalDateTime.now());
         empMapper.inster(emp);
+
+        //添加员工工作经历
+        List<EmpExpr> empexprs = emp.getExprList();
+        if(!CollectionUtils.isEmpty(empexprs))
+        {
+            empexprs.forEach(empExpr-> {
+                empExpr.setEmpId(emp.getId());
+            });
+            empExprMapper.insertBatch(empexprs);
+        }
 
     }
 }

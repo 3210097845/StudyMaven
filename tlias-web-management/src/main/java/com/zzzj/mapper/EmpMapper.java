@@ -42,7 +42,7 @@ public interface EmpMapper {
      * 保存员工基本信息
      */
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into emp(username,password,name,gender,phone,job,salary,image,entry_date,dept_id,create_time,update_time)" +
-            " values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
+//    @Insert("insert into emp(username,password,name,gender,phone,job,salary,image,entry_date,dept_id,create_time,update_time)" +
+//            " values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
     void inster(Emp emp);
 }

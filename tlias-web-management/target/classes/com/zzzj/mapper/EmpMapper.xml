@@ -24,7 +24,7 @@
         </where>
             order by e.update_time desc
         </select>
-    <!-- parameterType属性指定了传入参数的类型，这里表示传入的是一个Emp对象 -->
+<!--    &lt;!&ndash; parameterType属性指定了传入参数的类型，这里表示传入的是一个Emp对象 &ndash;&gt;-->
     <insert id="inster" parameterType="com.zzzj.pojo.Emp">
         insert into emp(username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)
         values (#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})
