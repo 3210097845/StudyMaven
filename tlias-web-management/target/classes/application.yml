@@ -7,6 +7,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver #数据库驱动
     username: root #数据库用户名
     password: 123456 #数据库密码
+  servlet:
+    multipart:
+      #文件上传最大单个文件大小（默认为1MB）
+      max-file-size: 10MB
+      #最大请求总大小（包括所有文件和表单数据）
+      max-request-size: 100MB
     #mybatis配置
 mybatis:
   configuration:
@@ -15,3 +21,13 @@ mybatis:
 pagehelper:
   reasonable: true #reasonable：分页合理化参数，默认值为false。当该参数设置为true时，pageNum<=0时会查询第一页，pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
   helper-dialect: mysql
+#spring事务管理日志
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+#阿里云OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-shenzhen.aliyuncs.com
+    bucketName: java-ai-web-itzzj
+    region: cn-shenzhen
