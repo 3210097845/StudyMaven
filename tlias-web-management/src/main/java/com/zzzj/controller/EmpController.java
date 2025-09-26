@@ -97,4 +97,14 @@ public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyy
         Emp emp  = empService.getInfo(id);
         return Result.success(emp);
     }
+    /**
+     * 更新员工信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Emp emp)
+{
+    log.info("更新员工信息： {}", emp);
+    empService.update(emp);
+    return Result.success();
+}
 }

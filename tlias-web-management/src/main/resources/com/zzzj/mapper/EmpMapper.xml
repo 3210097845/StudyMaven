@@ -4,7 +4,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzzj.mapper.EmpMapper">
-<!-- namespace属性用于指定当前Mapper映射文件对应的Mapper接口的全限定名 -->
+    <!--根据ID更新员工信息-->
+    <update id="updateById">
+        update emp
+        <set>
+#             set标签的作用是可以去掉掉多余的逗号
+            <if test="username != null and username != ''">username = #{username},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="job != null">job = #{job},</if>
+            <if test="salary != null">salary = #{salary},</if>
+            <if test="image != null and image != ''">image = #{image},</if>
+            <if test="entryDate != null">entry_date = #{entryDate},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- namespace属性用于指定当前Mapper映射文件对应的Mapper接口的全限定名 -->
 <!-- 它将EmpMapper.xml文件与com.zzzj.mapper.EmpMapper接口进行绑定 -->
 <!-- 这样MyBatis就知道该映射文件是为哪个接口提供SQL映射的 -->
 <!-- namespace="com.zzzj.mapper.EmpMapper" -->

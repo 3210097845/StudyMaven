@@ -22,4 +22,7 @@ public interface EmpService {
      * 根据ID查询员工的详细信息
      */
     Emp getInfo(Integer id);
+
+    //修改员工基本信息
+    void update(Emp emp);
 }
