@@ -11,4 +11,7 @@ import java.util.List;
 @Mapper
 public interface EmpExprMapper {
     void insertBatch(List<EmpExpr> empexprs);
+
+    //批量删除员工工作经历
+    void deleteByEmpIds(List<Integer> empids);
 }

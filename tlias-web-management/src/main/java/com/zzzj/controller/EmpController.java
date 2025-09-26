@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工管理
@@ -35,7 +36,8 @@ public class EmpController {
 //        PageResult<Emp> pageResult = empService.page(page, pageSize, name, gender, begin, end);
 //        return Result.success(pageResult);
 //
-//    }
+
+    //
 @GetMapping
 public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyyy-MM-dd")日期时间类型参数接收时,需要通过这个注解指定前端传递的日期格式
 {
@@ -56,4 +58,43 @@ public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyy
     return Result.success();
 }
 
+/**
+ * 删除员工
+ */
+//方式一：
+//@DeleteMapping()
+//    public Result delete(Integer[] ids)
+//{
+//    log.info("删除员工，员工id： {}",Arraays.asList(ids));
+//    empService.delete(ids);
+    //return Result.success();
+
+//方式二：
+    @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids)
+    {
+        log.info("删除员工，员工id： {}", ids);
+        empService.deleteByIds(ids);
+        return Result.success();
+
+    }
+///**
+// * 根据id查询员工数据
+// */
+//@GetMapping("/{id}")
+//    public Result get(@PathVariable Integer id)
+//{
+//    log.info("查询员工，员工id： {}", id);
+//    Emp emp = empService.getInfo(id);
+//    return Result.success(emp);
+//}
+    /**
+     * 查询回显
+     */
+    @GetMapping("/{id}")
+    public Result getInfo(@PathVariable Integer id){
+        log.info("根据id查询员工的详细信息");
+        Emp emp  = empService.getInfo(id);
+        return Result.success(emp);
+    }
 }

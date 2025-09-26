@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
+import java.util.concurrent.Executor;
 
 @Data
 @AllArgsConstructor
@@ -22,5 +23,6 @@ public class EmpQueryParam {
     private LocalDate begin; //入职开始时间
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate end; //入职结束时间
-    
+    //public Executor
+    //String
 }

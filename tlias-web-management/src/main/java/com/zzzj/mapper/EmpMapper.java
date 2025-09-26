@@ -42,7 +42,23 @@ public interface EmpMapper {
      * 保存员工基本信息
      */
     @Options(useGeneratedKeys = true, keyProperty = "id")
-//    @Insert("insert into emp(username,password,name,gender,phone,job,salary,image,entry_date,dept_id,create_time,update_time)" +
-//            " values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
-    void inster(Emp emp);
+    @Insert("insert into emp(username,password,name,gender,phone,job,salary,image,entry_date,dept_id,create_time,update_time)" +
+            " values(#{username},#{password},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
+    void insert(Emp emp);
+
+    /**
+     * 批量删除员工
+     * @param ids
+     */
+
+    void deleteByIds(List< Integer> ids);
+
+    /**
+     * 根据id查询员工信息
+     */
+    //    Emp getById(Integer id);
+    /**
+     * 根据ID查询员工详细信息
+     */
+    Emp getById(Integer id);
 }

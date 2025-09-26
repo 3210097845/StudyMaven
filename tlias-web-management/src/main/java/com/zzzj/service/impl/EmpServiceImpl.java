@@ -9,6 +9,7 @@ import com.zzzj.pojo.EmpExpr;
 import com.zzzj.pojo.EmpQueryParam;
 import com.zzzj.pojo.PageResult;
 import com.zzzj.service.EmpService;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +67,7 @@ public class EmpServiceImpl implements EmpService {
         //设置时间为当前更新时间
         emp.setCreateTime(LocalDateTime.now());
         emp.setUpdateTime(LocalDateTime.now());
-        empMapper.inster(emp);
+        empMapper.insert(emp);
 
         //添加员工工作经历
         List<EmpExpr> empexprs = emp.getExprList();
@@ -78,5 +79,28 @@ public class EmpServiceImpl implements EmpService {
             empExprMapper.insertBatch(empexprs);
         }
 
+    }
+
+    /**
+     * 批量删除员工
+     * @param ids
+     */
+    @Transactional
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        empMapper.deleteByIds(ids);
+        empExprMapper.deleteByEmpIds(ids);
+
+    }
+    /**
+     * 根据id查询员工
+     */
+//    @Override
+//    public Emp getInfo(Integer id) {
+//        return empMapper.getById(id);
+//    }
+    @Override
+    public Emp getInfo(Integer id) {
+        return empMapper.getById(id);
     }
 }
