@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.concurrent.Executor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data//添加getter和setter方法
+@AllArgsConstructor//添加全参构造方法
+@NoArgsConstructor//添加无参构造方法
 public class EmpQueryParam {
     /**
      * 分页查询的传入参数封装

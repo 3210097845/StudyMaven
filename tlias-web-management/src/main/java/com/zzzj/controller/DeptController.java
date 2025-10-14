@@ -20,12 +20,22 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/depts")
 /**
- * @RestController 是 Spring 提供的注解，用于标识该类是一个 RESTful 风格的控制器。
- * 它结合了 @Controller 和 @ResponseBody 的作用：
- * - @Controller：将该类标记为 Spring MVC 的控制器组件。
- * - @ResponseBody：表示方法返回值直接写入 HTTP 响应体（通常用于返回 JSON 数据）。
- * 因此，使用 @RestController 后，方法返回的对象会自动转换为 JSON 格式返回给客户端。
+ * 部门管理控制器
+ * 
+ * @RequestMapping("/depts") 注解用于映射所有部门相关的HTTP请求，
+ * 该类中定义的所有接口都会以 "/depts" 作为根路径。
+ * 例如：GET /depts 会调用 list() 方法
+ *      DELETE /depts 会调用 delete() 方法
+ * 
+ * 结合类上的 @RestController 注解，本控制器专门用于处理RESTful风格的API请求，
+ * 所有方法返回的数据都将直接写入HTTP响应体中（通常为JSON格式）。
  */
+// * @RestController 是 Spring 提供的注解，用于标识该类是一个 RESTful 风格的控制器。
+// * 它结合了 @Controller 和 @ResponseBody 的作用：
+// * - @Controller：将该类标记为 Spring MVC 的控制器组件。
+// * - @ResponseBody：表示方法返回值直接写入 HTTP 响应体（通常用于返回 JSON 数据）。
+// * 因此，使用 @RestController 后，方法返回的对象会自动转换为 JSON 格式返回给客户端。
+// */
 @RestController
 public class DeptController {
 

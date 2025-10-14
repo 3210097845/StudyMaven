@@ -2,13 +2,11 @@ package com.zzzj.mapper;
 
 import com.zzzj.pojo.Emp;
 import com.zzzj.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工信息
@@ -66,4 +64,17 @@ public interface EmpMapper {
      * 更新员工基本信息
      */
     void updateById(Emp emp);
+
+    /**
+     * 统计各个职位的员工人数
+     */
+    @MapKey("pos")
+    List<Map<String, Object>> countEmpJobData();
+
+    /**
+     * 统计员工性别人数
+     * @return
+     */
+    @MapKey("gender")
+    List<Map<String,Object>> countEmpGenderData();
 }
