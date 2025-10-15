@@ -47,6 +47,16 @@ public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyy
 
 }
 
+ /**
+ * 显式处理 /emps/list 请求
+ */
+@GetMapping("/list")
+public Result pageList(EmpQueryParam empqueryparam) {
+    log.info("查询请求参数： {}", empqueryparam);
+    PageResult<Emp> pageResult = empService.page(empqueryparam);
+    return Result.success(pageResult);
+}
+
 /**
  * 添加员工
  */
@@ -91,7 +101,7 @@ public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyy
     /**
      * 查询回显
      */
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/info")
     public Result getInfo(@PathVariable Integer id){
         log.info("根据id查询员工的详细信息");
         Emp emp  = empService.getInfo(id);

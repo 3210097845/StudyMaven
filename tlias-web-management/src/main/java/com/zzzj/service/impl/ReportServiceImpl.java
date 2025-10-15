@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ReportServiceImpl implements ReportService {
+public class  ReportServiceImpl implements ReportService {
 
     @Autowired
     private EmpMapper empMapper;
