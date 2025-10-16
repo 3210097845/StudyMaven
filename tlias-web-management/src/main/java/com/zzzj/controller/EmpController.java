@@ -53,8 +53,8 @@ public Result  page(EmpQueryParam empqueryparam)//@DateTimeFormat(pattern = "yyy
 @GetMapping("/list")
 public Result pageList(EmpQueryParam empqueryparam) {
     log.info("查询请求参数： {}", empqueryparam);
-    PageResult<Emp> pageResult = empService.page(empqueryparam);
-    return Result.success(pageResult);
+    List<Emp> emplist = empService.listName();
+    return Result.success(emplist);
 }
 
 /**

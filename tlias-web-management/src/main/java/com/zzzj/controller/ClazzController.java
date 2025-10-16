@@ -4,9 +4,9 @@ import com.zzzj.pojo.*;
 import com.zzzj.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -28,4 +28,47 @@ public class ClazzController {
 
 
     }
+    /**
+     * 添加班级
+     */
+    @PostMapping
+    public Result save(@RequestBody Clazz clazz)
+    {
+        log.info("添加班级，班级信息： {}", clazz);
+        clazzService.save(clazz);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询班级
+     */
+    @GetMapping("/{id}")
+    public Result get(@PathVariable Integer id)
+    {
+        log.info("查询班级，班级id： {}", id);
+        Clazz clazz = clazzService.getInfoclazz(id);
+        return Result.success(clazz);
+    }
+
+    /**
+     * 修改班级信息
+     */
+    @PutMapping
+    public Result updateclazz(@RequestBody Clazz clazz)
+    {
+        log.info("修改班级信息： {}", clazz);
+        clazzService.updateclazz(clazz);
+        return Result.success();
+    }
+    /**
+     * 删除班级
+     */
+//    @DeleteMapping("/{id}")
+//    public Result delete( @RequestParam("id") Integer ides)
+//    {
+//        log.info("删除班级，班级id： {}", ides);
+//        clazzService.deleteById(ides);
+//        return Result.success();
+//
+//    }
 }

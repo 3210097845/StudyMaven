@@ -10,4 +10,13 @@ import java.util.List;
 public interface ClazzMapper {
 
     public List<Clazz> clazzpage(EmpQueryParam clazzQueryParam);
+
+//    void deleteById(Integer id);
+
+    //添加班级
+    void save(Clazz clazz);
+
+    Clazz getInfoclazz(Integer id);
+
+    void updateclazz(Clazz clazz);
 }

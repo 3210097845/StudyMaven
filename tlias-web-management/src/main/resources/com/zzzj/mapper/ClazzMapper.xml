@@ -4,6 +4,101 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzzj.mapper.ClazzMapper">
 
+<!--    添加班级-->
+    <insert id="save">
+        insert into clazz
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="name != null and name != ''">
+            name,
+        </if>
+        <if test="room != null and room != ''">
+            room,
+        </if>
+            <if test="beginDate != null">
+                begin_date,
+            </if>
+            <if test="endDate != null">
+                end_date,
+            </if>
+            <if test="masterId != null and masterId != ''">
+                master_id,
+            </if>
+            <if test="subject != null and subject !=''">
+                subject,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="name != null and name != ''">
+                    #{name},
+                </if>
+                <if test="room != null and room != ''">
+                    #{room},
+                </if>
+                <if test="beginDate != null">
+                    #{beginDate},
+                </if>
+                <if test="endDate != null">
+                    #{endDate},
+                </if>
+                <if test="masterId != null and masterId != ''">
+                    #{masterId},
+                </if>
+                <if test="subject != null and subject !=''">
+                    #{subject},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+            </trim>
+
+    </insert>
+
+<!--    修改班级信息-->
+    <update id="updateclazz">
+        update clazz
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="room != null and room != ''">
+                room = #{room},
+            </if>
+            <if test="beginDate != null">
+                begin_date = #{beginDate},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate},
+            </if>
+            <if test="masterId != null and masterId != ''">
+                master_id = #{masterId},
+            </if>
+            <if test="subject != null and subject !=''">
+                subject = #{subject},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--    <delete id="deleteById">-->
+<!--        DELETE FROM clazz-->
+<!--        WHERE id IN-->
+<!--        <foreach collection="ids" item="id" open="(" separator="," close=")">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
     <select id="clazzpage" resultType="com.zzzj.pojo.Clazz">
         select c.name, c.room, c.begin_date, c.end_date, c.master_id, c.subject, c.create_time, c.update_time,
                e.name masterName,
@@ -23,4 +118,18 @@
             </if>
         </where>
     </select>
+<!--    根据id查询班级信息-->
+    <select id="getInfoclazz" resultType="com.zzzj.pojo.Clazz">
+        select c.name, c.room, c.begin_date, c.end_date, c.master_id, c.subject, c.create_time, c.update_time,
+               e.name masterName,
+               case
+                   when now() &gt; c.end_date then '已结课'
+                   when now() &lt;= c.begin_date  then '未开班'
+                   else '在读中'
+                   end as status
+        from clazz c
+        left join emp e on c.master_id = e.id
+        where c.id = #{id}
+    </select>
+
 </mapper>

@@ -121,4 +121,8 @@ public class EmpServiceImpl implements EmpService {
         }
 
     }
+    @Override
+    public List<Emp> listName() {
+        return empMapper.listName();
+    }
 }

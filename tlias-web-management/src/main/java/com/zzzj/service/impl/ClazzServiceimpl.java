@@ -11,6 +11,7 @@ import com.zzzj.service.ClazzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,4 +29,40 @@ public class ClazzServiceimpl implements ClazzService {
         Page<Clazz> p = (Page<Clazz>) clazzlist;
         return new PageResult<>(p.getTotal(),p.getResult());
     }
+
+    /**
+     * 添加班级
+     */
+    @Override
+    public void save(Clazz clazz)
+    {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.save(clazz);
+    }
+
+    /**
+     * 根据id查询班级
+     * @param id
+     */
+    @Override
+   public  Clazz getInfoclazz (Integer id){
+
+        return clazzMapper.getInfoclazz(id);
+    }
+
+    /**
+     * 修改班级信息
+     */
+    @Override
+    public void updateclazz(Clazz clazz)
+    {
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.updateclazz(clazz);
+    }
+//    @Override
+//    public void deleteById(Integer id)
+//    {
+//        clazzMapper.deleteById(id);
+//    }
 }
