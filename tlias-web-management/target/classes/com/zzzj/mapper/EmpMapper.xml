@@ -104,6 +104,11 @@
         group by gender;
     </select>
 
+<!--    查询全部员工姓名-->
+    <select id="listName" resultType="com.zzzj.pojo.Emp">
+        select * from emp
+    </select>
+
     <!--    &lt;!&ndash; parameterType属性指定了传入参数的类型，这里表示传入的是一个Emp对象 &ndash;&gt;-->
 <!--    <insert id="insert" parameterType="com.zzzj.pojo.Emp">-->
 <!--        insert into emp(username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)-->
@@ -116,5 +121,6 @@
             #{id}
         </foreach>
     </delete>
+
 </mapper>
 <!-- concat函数用于字符串拼接，这里将'%'与参数#{name}进行拼接，实现模糊查询 -->
