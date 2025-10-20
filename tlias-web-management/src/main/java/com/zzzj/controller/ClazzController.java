@@ -63,12 +63,12 @@ public class ClazzController {
     /**
      * 删除班级
      */
-//    @DeleteMapping("/{id}")
-//    public Result delete( @RequestParam("id") Integer ides)
-//    {
-//        log.info("删除班级，班级id： {}", ides);
-//        clazzService.deleteById(ides);
-//        return Result.success();
-//
-//    }
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable(name = "id") Integer ides)
+    {
+        log.info("删除班级，班级id： {}", ides);
+        clazzService.deleteById(ides);
+        return Result.success();
+
+    }
 }

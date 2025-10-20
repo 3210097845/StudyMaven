@@ -6,6 +6,9 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * 全局异常处理器
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,6 +31,13 @@ public class GlobalExceptionHandler {
         return Result.error("已存在："+arr[2]);
 
 
+    }
+
+    //处理删除班级异常
+    @ExceptionHandler(DeleteclazzException.class)
+    public Result handleDeleteclazzException(DeleteclazzException e){
+        log.error("删除班级出错: " + e.getMessage());
+        return Result.error(e.getMessage());
     }
     
 }

@@ -14,7 +14,7 @@ public interface ClazzService {
      */
     PageResult<Clazz> page(EmpQueryParam clazzQueryParam);
 
-//    void deleteById(Integer ides);
+    void deleteById(Integer ides);
 
     void save(Clazz clazz);
 
