@@ -71,4 +71,14 @@ public class ClazzController {
         return Result.success();
 
     }
+    /**
+     * 查询所有班级
+     */
+    @GetMapping("/list")
+    public Result clazzlist()
+    {
+        log.info("查询所有班级");
+        List<Clazz> clazzlist = clazzService.findAll();
+        return Result.success(clazzlist);
+    }
 }

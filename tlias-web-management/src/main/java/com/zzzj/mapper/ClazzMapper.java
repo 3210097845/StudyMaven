@@ -16,9 +16,15 @@ public interface ClazzMapper {
     //添加班级
     void save(Clazz clazz);
 
+    //根据id查询班级
     Clazz getInfoclazz(Integer id);
 
+    //修改班级信息
     void updateclazz(Clazz clazz);
 
+    //删除班级
     void deleteById(Integer id);
+
+    //查询所有班级
+    List<Clazz> findAll();
 }

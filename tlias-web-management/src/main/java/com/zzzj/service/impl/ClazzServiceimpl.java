@@ -83,4 +83,9 @@ public class ClazzServiceimpl implements ClazzService {
         //删除班级
         clazzMapper.deleteById(id);
     }
+    @Override
+    public List<Clazz> findAll() {
+       List<Clazz> clazzList = clazzMapper.findAll();
+       return clazzList;
+    }
 }

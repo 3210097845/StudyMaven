@@ -21,4 +21,6 @@ public interface ClazzService {
     Clazz getInfoclazz(Integer id);
 
     void updateclazz(Clazz clazz);
+
+    List<Clazz> findAll();
 }

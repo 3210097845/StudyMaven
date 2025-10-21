@@ -128,5 +128,9 @@
         left join emp e on c.master_id = e.id
         where c.id = #{id}
     </select>
+<!--    查询所有班级-->
+    <select id="findAll" resultType="com.zzzj.pojo.Clazz">
+            select * from clazz
+    </select>
 
 </mapper>
