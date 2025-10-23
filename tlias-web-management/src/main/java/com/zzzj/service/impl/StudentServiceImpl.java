@@ -19,6 +19,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
 
+
     /**
      * 分页查询
      * @param studentQueryParam
@@ -73,5 +74,18 @@ public class StudentServiceImpl implements StudentService {
     public void deleteByIds(List<Integer> ids)
     {
         studentMapper.deleteById(ids);
+    }
+    /**
+     * 违纪处理
+     */
+    @Override
+    public void handleDiscipline(Integer id, Short score)
+    {
+        //修改更新时间
+        Student student = studentMapper.getInfoclazz(id);
+        student.setUpdateTime(LocalDateTime.now());
+        student.setViolationCount((short) (student.getViolationCount() + 1));
+        student.setViolationScore((short) (student.getViolationScore() + score));
+        studentMapper.updatestudent(student);
     }
 }

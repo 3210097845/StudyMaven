@@ -1,5 +1,6 @@
 package com.zzzj.service;
 
+import com.zzzj.pojo.ClazzOption;
 import com.zzzj.pojo.JobOption;
 
 import java.util.List;
@@ -18,4 +19,16 @@ public interface ReportService {
      */
 
     List<Map<String,Object>> countEmpJobData();
+
+    /**
+     * 统计班级人数
+     * @return
+     */
+    ClazzOption countStudentCountData();
+
+    /**
+     * 统计学员学历
+     * @return
+     */
+    List<Map<String, Object>> countStudentDegreeData();
 }

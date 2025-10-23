@@ -1,5 +1,6 @@
 package com.zzzj.controller;
 
+import com.zzzj.pojo.ClazzOption;
 import com.zzzj.pojo.JobOption;
 import com.zzzj.pojo.Result;
 import com.zzzj.service.ReportService;
@@ -29,11 +30,33 @@ public class ReportController {
         JobOption jobOption = reportService.getEmpJobData();
         return Result.success(jobOption);
     }
-
+    /**
+     * 统计员工性别对应的人数
+     */
     @GetMapping("/empGenderData")
     public Result getEmpGenderData(){
         log.info("统计男女性别对应的人数");
         List<Map<String,Object>> mapList= reportService.countEmpJobData();
         return Result.success(mapList);
+    }
+    /**
+     * 统计班级人数
+     */
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData(){
+        log.info("统计班级人数");
+        ClazzOption mapList= reportService.countStudentCountData();
+        return Result.success(mapList);
+    }
+
+
+    /**
+     * 统计学员学历
+     */
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData(){
+        log.info("统计学员学历");
+        List<Map<String,Object>> mapListt= reportService.countStudentDegreeData();
+        return Result.success(mapListt);
     }
 }

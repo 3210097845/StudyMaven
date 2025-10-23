@@ -37,4 +37,8 @@ public interface DeptMapper {
     //修改部门
      @Update("update dept set name=#{name},update_time=#{updateTime} where id=#{id}")
    public void update(Dept dept);
+
+     //查询部门人数
+    @Select("select count(*) from emp e where e.dept_id=#{id}")
+    int countEmp(Integer id);
 }

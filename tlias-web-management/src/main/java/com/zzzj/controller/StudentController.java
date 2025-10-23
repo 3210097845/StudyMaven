@@ -69,18 +69,18 @@ public class StudentController {
         studentService.deleteByIds(ids);
         return Result.success();
     }
-    
-    /**
-     * 批量删除学员 - 通过查询参数(兼容旧版前端)
-     */
-    @DeleteMapping
-    public Result deleteByIds(@RequestParam List<Integer> ids)
-    {
-        log.info("删除学员，学员id：{}", ids);
-        studentService.deleteByIds(ids);
-        return Result.success();
-    }
+
     /**
      * 违纪处理
      */
+    @PutMapping("/violation/{id}/{score}")
+    public Result handleDiscipline(@PathVariable Integer id, @PathVariable Short score)
+    {
+        log.info("违纪处理，学员id：{}，扣分：{}", id, score);
+//        Student student = studentService.getInfostudent(id);
+//        student.setScore(student.getScore() - score);
+//        studentService.updatestudent(student);
+        studentService.handleDiscipline(id, score);
+        return Result.success();
+    }
 }

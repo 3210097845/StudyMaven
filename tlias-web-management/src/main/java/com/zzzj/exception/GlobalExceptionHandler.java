@@ -39,5 +39,11 @@ public class GlobalExceptionHandler {
         log.error("删除班级出错: " + e.getMessage());
         return Result.error(e.getMessage());
     }
+    //处理删除部门异常
+    @ExceptionHandler(DeleteDeptException.class)
+    public Result handleDeleteDeptException(DeleteDeptException e){
+        log.error("删除部门出错: " + e.getMessage());
+        return Result.error(e.getMessage());
+    }
     
 }

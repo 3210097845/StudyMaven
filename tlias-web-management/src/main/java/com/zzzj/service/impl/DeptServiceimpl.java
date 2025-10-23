@@ -1,5 +1,6 @@
 package com.zzzj.service.impl;
 
+import com.zzzj.exception.DeleteDeptException;
 import com.zzzj.mapper.DeptMapper;
 import com.zzzj.pojo.Dept;
 import com.zzzj.service.DeptService;
@@ -28,6 +29,12 @@ public class DeptServiceimpl implements DeptService {
     @Override
     public void delete(Integer id)
     {
+        int count = deptMapper.countEmp(id);
+        //判断部门下是否有员工
+        if(count>0)
+        {
+            throw new DeleteDeptException("该部门有员工，不能删除");
+        }
         deptMapper.delete(id);
     }
 

@@ -38,4 +38,11 @@ public interface StudentService {
      * @param ids
      */
     void deleteByIds(List<Integer> ids);
+
+    /**
+     * 违纪处理
+     * @param id
+     * @param score
+     */
+    void handleDiscipline(Integer id, Short score);
 }

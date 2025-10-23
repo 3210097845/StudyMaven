@@ -12,4 +12,7 @@ import java.util.List;
 public class JobOption {
     private List jobList;//职位列表
     private List dataList;//对应的人数封装
-}
+    //List<String > name;
+    //List<Integer> value;
+    //List<Map<String,Object>> list;
+ }

@@ -115,10 +115,10 @@
                 graduation_date = #{graduationDate},
             </if>
             <if test="violationCount != null and violationCount != ''">
-            violation_count = #{violationCount}
+                violation_count = #{violationCount},
             </if>
             <if test="violationScore != null and violationScore != ''">
-                violation_score = #{violationScore}
+                violation_score = #{violationScore},
             </if>
             <if test="clazzId != null">
                 clazz_id = #{clazzId},
@@ -161,5 +161,27 @@
         select s.id , s.name , s.no , s.gender , s.phone , s.id_card , s.is_college , s.address , s.degree , s.graduation_date , s.clazz_id , s.violation_count , s.violation_score , s.create_time , s.update_time
         from student s
         where s.id = #{id}
+    </select>
+<!--    查询班级名称对应的人数-->
+    <select id="countStudentCountData" resultType="java.util.Map">
+
+select c.name as name, count(s.clazz_id) as total
+from student s left join clazz c on s.clazz_id = c.id
+group by c.name
+    </select>
+<!--    查询学员学历-->
+    <select id="countStudentDegreeData" resultType="java.util.Map">
+        select
+            (case degree when 1 then '初中'
+                        when 2 then '高中'
+                        when 3 then '大专'
+                        when 4 then '本科'
+                        when 5 then '硕士'
+                        when 6 then '博士'
+                end) name,
+                count(degree) as value
+        from student
+        group by degree
+        order by value desc
     </select>
 </mapper>

@@ -2,9 +2,11 @@ package com.zzzj.mapper;
 
 import com.zzzj.pojo.Student;
 import com.zzzj.pojo.StudentQueryParam;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
@@ -19,4 +21,10 @@ public interface StudentMapper {
     void updatestudent(Student student);
 
     void deleteById(List<Integer> ids);
+
+    @MapKey("name")
+    List<Map<String, Object>> countStudentCountData();
+    @MapKey("name")
+    List<Map<String, Object>> countStudentDegreeData();
+
 }
