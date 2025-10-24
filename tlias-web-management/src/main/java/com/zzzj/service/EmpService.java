@@ -2,6 +2,7 @@ package com.zzzj.service;
 
 import com.zzzj.pojo.Emp;
 import com.zzzj.pojo.EmpQueryParam;
+import com.zzzj.pojo.LoginInfo;
 import com.zzzj.pojo.PageResult;
 
 import java.time.LocalDate;
@@ -27,4 +28,7 @@ public interface EmpService {
     void update(Emp emp);
     //查询全部员工姓名
     List<Emp> listName();
+
+    //登录
+    LoginInfo login(Emp emp);
 }

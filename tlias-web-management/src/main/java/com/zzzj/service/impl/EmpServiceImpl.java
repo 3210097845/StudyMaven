@@ -4,11 +4,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.zzzj.mapper.EmpExprMapper;
 import com.zzzj.mapper.EmpMapper;
-import com.zzzj.pojo.Emp;
-import com.zzzj.pojo.EmpExpr;
-import com.zzzj.pojo.EmpQueryParam;
-import com.zzzj.pojo.PageResult;
+import com.zzzj.pojo.*;
 import com.zzzj.service.EmpService;
+import com.zzzj.utils.JwtUtils;
 import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,9 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工管理
@@ -124,5 +124,26 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<Emp> listName() {
         return empMapper.listName();
+    }
+
+    /**
+     * 登录功能
+     */
+    @Override
+    public LoginInfo login(Emp emp) {
+        Emp log=empMapper.getByUsernameAndPassword(emp);
+        if(log==null)
+            return null;
+        else
+        {
+            //生成JWT令牌
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", log.getId());
+            claims.put("username", log.getUsername());
+            String jwt = JwtUtils.generateJwt(claims);
+            LoginInfo loginInfo = new LoginInfo(log.getId(), log.getUsername(), log.getName(), jwt );
+            return loginInfo;
+        }
+
     }
 }

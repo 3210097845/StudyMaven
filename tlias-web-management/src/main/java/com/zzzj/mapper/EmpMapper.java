@@ -2,6 +2,7 @@ package com.zzzj.mapper;
 
 import com.zzzj.pojo.Emp;
 import com.zzzj.pojo.EmpQueryParam;
+import com.zzzj.pojo.LoginInfo;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDate;
@@ -79,4 +80,9 @@ public interface EmpMapper {
     List<Map<String,Object>> countEmpGenderData();
 
     List<Emp> listName();
+
+    /**
+     * 根据用户名和密码查询员工
+     */
+    Emp getByUsernameAndPassword(Emp emp);
 }
