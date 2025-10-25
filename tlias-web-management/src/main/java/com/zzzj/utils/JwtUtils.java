@@ -33,7 +33,7 @@ public class JwtUtils {
     public static Claims parseJWT(String jwt){
         Claims claims = Jwts.parser()
                 .setSigningKey(signKey)
-                .parseClaimsJws(jwt)
+                .parseClaimsJws(jwt)//解析令牌
                 .getBody();
         return claims;
     }

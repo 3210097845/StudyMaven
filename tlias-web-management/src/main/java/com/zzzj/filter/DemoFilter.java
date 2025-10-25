@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Slf4j
-@WebFilter(urlPatterns = "/*") //配置过滤器要拦截的请求路径（ /* 表示拦截浏览器的所有请求 ）
+//@WebFilter(urlPatterns = "/*") //配置过滤器要拦截的请求路径（ /* 表示拦截浏览器的所有请求 ）
 public class DemoFilter implements Filter {
     //初始化方法, web服务器启动, 创建Filter实例时调用, 只调用一次
     public void init(FilterConfig filterConfig) throws ServletException {

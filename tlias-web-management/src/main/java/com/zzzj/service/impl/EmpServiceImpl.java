@@ -140,7 +140,7 @@ public class EmpServiceImpl implements EmpService {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", log.getId());
             claims.put("username", log.getUsername());
-            String jwt = JwtUtils.generateJwt(claims);
+            String jwt = JwtUtils.generateJwt(claims);//生成JWT令牌
             LoginInfo loginInfo = new LoginInfo(log.getId(), log.getUsername(), log.getName(), jwt );
             return loginInfo;
         }
