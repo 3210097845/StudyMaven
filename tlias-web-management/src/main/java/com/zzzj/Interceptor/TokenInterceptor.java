@@ -1,36 +1,30 @@
-package com.zzzj.filter;
+package com.zzzj.Interceptor;
 
 import com.zzzj.utils.JwtUtils;
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import java.io.IOException;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * 令牌校验过滤器
+ * 令牌校验拦截器
  */
 @Slf4j
-//@WebFilter(urlPatterns = "/*")//拦截所有请求
-public class TokenFilter implements Filter {
-
+@Component
+public class TokenInterceptor implements HandlerInterceptor {
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-
-        HttpServletRequest request = (HttpServletRequest) req;//请求对象
-        HttpServletResponse response = (HttpServletResponse) resp;//响应对象
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1. 获取请求url。
-        String url = request.getRequestURL().toString();
-
-        //2. 判断请求url中是否包含login，如果包含，说明是登录操作，放行。
-        if(url.contains("login")){ //登录请求
-            log.info("登录请求 , 直接放行");
-            chain.doFilter(request, response);
-            return;
-        }
+//        String url = request.getRequestURL().toString();
+//
+//        //2. 判断请求url中是否包含login，如果包含，说明是登录操作，放行。
+//        if(url.contains("login")){ //登录请求
+//            log.info("登录请求 , 直接放行");
+//            return true;
+//        }
 
         //3. 获取请求头中的令牌（token）。
         String jwt = request.getHeader("token");
@@ -39,7 +33,7 @@ public class TokenFilter implements Filter {
         if(jwt == null|| jwt.isEmpty()){ //jwt为空
             log.info("获取到jwt令牌为空,响应401");
             response.setStatus(HttpStatus.SC_UNAUTHORIZED);//专门设置响应状态码的
-            return;
+            return false;
         }
 
         //5. 解析token，如果解析失败，返回错误结果（未登录）。
@@ -49,12 +43,12 @@ public class TokenFilter implements Filter {
             e.printStackTrace();//抛异常
             log.info("解析令牌失败, 返回错误结果");
             response.setStatus(HttpStatus.SC_UNAUTHORIZED);//专门设置响应状态码的
-            return;
+            return false;
         }
 
         //6. 放行。
         log.info("令牌合法, 放行");
-        chain.doFilter(request , response);
+        return true;
     }
 
 }
