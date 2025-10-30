@@ -1,5 +1,6 @@
 package com.zzzj.controller;
 
+import com.zzzj.anno.LogOperation;
 import com.zzzj.pojo.PageResult;
 import com.zzzj.pojo.Result;
 import com.zzzj.pojo.Student;
@@ -32,6 +33,7 @@ public class StudentController {
     /**
      * 添加学员
      */
+    @LogOperation
     @PostMapping
     public Result save(@RequestBody  Student student) {
         log.info("添加学员：{}", student);
@@ -51,6 +53,7 @@ public class StudentController {
     /**
      * 修改学生信息
      */
+    @LogOperation
     @PutMapping
     public Result update(@RequestBody Student student)
     {
@@ -62,6 +65,7 @@ public class StudentController {
     /**
      * 批量删除学员 - 通过路径变量
      */
+    @LogOperation
     @DeleteMapping("/{ids}")
     public Result delete(@PathVariable List<Integer> ids)
     {
@@ -73,6 +77,7 @@ public class StudentController {
     /**
      * 违纪处理
      */
+    @LogOperation
     @PutMapping("/violation/{id}/{score}")
     public Result handleDiscipline(@PathVariable Integer id, @PathVariable Short score)
     {

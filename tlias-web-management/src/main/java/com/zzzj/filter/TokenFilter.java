@@ -1,6 +1,8 @@
 package com.zzzj.filter;
 
+import com.zzzj.utils.CurrentHolder;
 import com.zzzj.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +16,7 @@ import java.io.IOException;
  * 令牌校验过滤器
  */
 @Slf4j
-//@WebFilter(urlPatterns = "/*")//拦截所有请求
+@WebFilter(urlPatterns = "/*")//拦截所有请求
 public class TokenFilter implements Filter {
 
     @Override
@@ -44,7 +46,10 @@ public class TokenFilter implements Filter {
 
         //5. 解析token，如果解析失败，返回错误结果（未登录）。
         try {
-            JwtUtils.parseJWT(jwt);
+            Claims claims = JwtUtils.parseJWT(jwt);//解析token，存储到当前线程中
+            Integer empId = Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
+            log.info("token解析成功, 放行");
         } catch (Exception e) {
             e.printStackTrace();//抛异常
             log.info("解析令牌失败, 返回错误结果");
@@ -55,6 +60,9 @@ public class TokenFilter implements Filter {
         //6. 放行。
         log.info("令牌合法, 放行");
         chain.doFilter(request , response);
+
+        //7. 删除当前线程中的数据
+        CurrentHolder.remove();
     }
 
 }

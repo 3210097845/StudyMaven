@@ -1,5 +1,6 @@
 package com.zzzj.controller;
 
+import com.zzzj.anno.LogOperation;
 import com.zzzj.pojo.Emp;
 import com.zzzj.pojo.EmpQueryParam;
 import com.zzzj.pojo.PageResult;
@@ -60,6 +61,7 @@ public Result pageList(EmpQueryParam empqueryparam) {
 /**
  * 添加员工
  */
+@LogOperation
 @PostMapping
     public Result save(@RequestBody Emp emp)
 {
@@ -80,6 +82,7 @@ public Result pageList(EmpQueryParam empqueryparam) {
     //return Result.success();
 
 //方式二：
+    @LogOperation
     @DeleteMapping
     public Result delete(@RequestParam List<Integer> ids)
     {
@@ -110,6 +113,7 @@ public Result pageList(EmpQueryParam empqueryparam) {
     /**
      * 更新员工信息
      */
+    @LogOperation
     @PutMapping
     public Result update(@RequestBody Emp emp)
 {

@@ -1,5 +1,6 @@
 package com.zzzj.controller;
 
+import com.zzzj.anno.LogOperation;
 import com.zzzj.pojo.*;
 import com.zzzj.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class ClazzController {
      * 添加班级
      */
     @PostMapping
+    @LogOperation
     public Result save(@RequestBody Clazz clazz)
     {
         log.info("添加班级，班级信息： {}", clazz);
@@ -54,6 +56,7 @@ public class ClazzController {
      * 修改班级信息
      */
     @PutMapping
+    @LogOperation
     public Result updateclazz(@RequestBody Clazz clazz)
     {
         log.info("修改班级信息： {}", clazz);
@@ -63,6 +66,7 @@ public class ClazzController {
     /**
      * 删除班级
      */
+    @LogOperation
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable(name = "id") Integer ides)
     {

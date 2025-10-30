@@ -1,6 +1,7 @@
 package com.zzzj.controller;
 
 
+import com.zzzj.anno.LogOperation;
 import com.zzzj.pojo.Dept;
 import com.zzzj.pojo.Result;
 import com.zzzj.service.DeptService;
@@ -90,6 +91,7 @@ public class DeptController {
     /*
     * - 方案三(推荐)：如果请求参数名与形参变量名相同，直接定义方法形参即可接收。（省略@RequestParam）
     * */
+    @LogOperation
     @DeleteMapping
     public Result delete(Integer id){
 //        System.out.println("根据ID删除部门: " + id);
@@ -103,6 +105,7 @@ public class DeptController {
      * @RequestBody: 表示将请求体中的JSON数据，映射为Java对象
      * java对象属性名必须与JSON数据中的属性名一致。
      */
+    @LogOperation
     @PostMapping
     public Result save (@RequestBody Dept dept)
     {
@@ -140,6 +143,7 @@ public class DeptController {
     /*
     * 根据id修改部门
     * */
+    @LogOperation
     @PutMapping
     public Result update(@RequestBody Dept dept)
     {
